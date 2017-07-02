@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alexandre.proyectoandroid.PasoPrincipal_cotejar_Fragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/etiqueta_tipo_activo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el tipo de activo que desea cotejar:"
+            android:textSize="30sp"
+            android:layout_marginBottom="12dp"/>
+
+        <RadioGroup
+            android:id="@+id/opciones_pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etiqueta_tipo_activo">
+
+            <RadioButton
+                android:id="@+id/radio_mobiliario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:checked="true"
+                android:text="Mobiliario"
+                android:textSize="25sp"
+                android:layout_marginBottom="5dp"
+                />
+            <RadioButton
+                android:id="@+id/radio_vehiculo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Vehiculo"
+                android:textSize="25sp"
+                />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</FrameLayout>

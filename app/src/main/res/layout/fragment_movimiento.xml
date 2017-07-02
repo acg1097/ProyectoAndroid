@@ -1,0 +1,96 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.alexandre.proyectoandroid.MovimientosFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_reporte"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/colorPrimary"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabAnadir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_add_24dp"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"/>
+        </android.support.design.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_movimientos"
+        android:icon="@drawable/ic_pack_car"
+        android:title="Movimientos"
+        />
+
+    <item
+        android:id="@+id/ic_cotejo"
+        android:icon="@drawable/ic_code_scan"
+        android:title="Cotejar"
+        />
+
+    <item
+        android:id="@+id/ic_perfil"
+        android:icon="@drawable/ic_perfil_24dp"
+        android:title="Perfil"
+        />
+
+</menu>
