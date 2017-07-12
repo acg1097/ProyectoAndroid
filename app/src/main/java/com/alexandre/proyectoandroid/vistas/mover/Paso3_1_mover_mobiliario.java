@@ -10,6 +10,8 @@ import android.widget.*;
 
 import com.alexandre.proyectoandroid.R;
 
+import java.lang.reflect.Array;
+
 public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickListener {
 
 
@@ -19,6 +21,8 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
     private Spinner spArea;
 
     private Fragment_mover_3 fm3;
+
+    private ArrayAdapter spAdapter;
 
     public Paso3_1_mover_mobiliario() {
     }
@@ -33,10 +37,10 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
         rd_venta = (RadioButton) view.findViewById(R.id.radio_compra);
         spArea = (Spinner) view.findViewById(R.id.spArea);
 
-        String [] areas = {"Administración","Contabilidad","Finanzas","Recursos humanos","Sistemas"};
+        String[] areas = getResources().getStringArray(R.array.Areas);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_dropdown_item,areas);
-        spArea.setAdapter(adapter);
+        spAdapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_dropdown_item,areas);
+        spArea.setAdapter(spAdapter);
 
         btn_siguiente_4_mover = (Button) view.findViewById(R.id.btn_continuar_mobiliario_4_mover);
         btn_siguiente_4_mover.setOnClickListener(this);
@@ -58,8 +62,9 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
                 } else {
                     tipo = 1;
                 }
-                String area;
-                fm3.pasar_registrar_movimiento_mobiliario_4(tipo);
+                String area = spArea.getItemAtPosition(spArea.getSelectedItemPosition()).toString();
+
+                fm3.pasar_registrar_movimiento_mobiliario_4(tipo,area);
                 break;
         }
 
@@ -67,7 +72,7 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
 
     public interface Fragment_mover_3 {
         void volver_anterior_mover_mobiliario_4();
-        void pasar_registrar_movimiento_mobiliario_4(int tipo);
+        void pasar_registrar_movimiento_mobiliario_4(int tipo,String area);
     }
 
 }

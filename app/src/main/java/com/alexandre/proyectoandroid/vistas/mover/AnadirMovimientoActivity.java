@@ -154,7 +154,6 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     public void pasar_siguiente_mover_mobiliario_3() {
         ActivoDAO dao = new ActivoDAO(AnadirMovimientoActivity.this);
         ActivoDTO a = dao.getActivoDTO(CODEBAR);
-        Toast.makeText(AnadirMovimientoActivity.this, "ñi", Toast.LENGTH_LONG).show();
         if (a.getEstado().toString().toLowerCase().trim().equals("vendido")) {
             Toast.makeText(AnadirMovimientoActivity.this, "El activo ha sido vendido", Toast.LENGTH_LONG).show();
         } else {
@@ -184,7 +183,8 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     }
 
     @Override
-    public void pasar_registrar_movimiento_mobiliario_4(int tipo) {
+    public void pasar_registrar_movimiento_mobiliario_4(int tipo,String area) {
+
         /*MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
         dao.registrarMovimiento(m);*/
         Toast.makeText(AnadirMovimientoActivity.this,"Movimiento registrado correctamente",Toast.LENGTH_LONG).show();
