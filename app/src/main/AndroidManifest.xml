@@ -16,13 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".CotejarActivity"
+            android:name=".vistas.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash"
+            android:name=".vistas.cotejar.CotejarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.extras.Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AnadirMovimientoActivity"></activity>
+        <activity android:name=".vistas.mover.AnadirMovimientoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.cotejar.Editar_mobiliario"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.extras.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.cotejar.Editar_carro"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.MainActivity_jefe"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.registrar.RegistrarActivo"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

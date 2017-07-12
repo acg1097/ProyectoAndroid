@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alexandre.proyectoandroid.PerfilFragment">
+    tools:context="com.alexandre.proyectoandroid.vistas.PerfilFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,17 +17,121 @@
                 android:id="@+id/toolbar_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary" />
 
         </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
 
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DNI"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvDNI_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="22sp"
+                    android:text="74522361"
+                    android:textColor="@color/gray"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="CONTRASEÑA"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvContrasena_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="22sp"
+                    android:text="ABC123"
+                    android:textColor="@color/gray"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="NOMBRES"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvNombres_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="22sp"
+                    android:text="SILVIO ALEXANDRE"
+                    android:textColor="@color/gray"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="APELLIDOS"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvApellidos_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="22sp"
+                    android:text="CASTILLO GUTIERREZ"
+                    android:textColor="@color/gray"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="CARGO"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvCargo_perfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="22sp"
+                    android:text="ALMACENISTA"
+                    android:textColor="@color/gray"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 

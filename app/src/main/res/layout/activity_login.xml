@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="com.alexandre.proyectoandroid.vistas.extras.LoginActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:tint="@color/white"
+            android:src="@drawable/logo"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvDNI_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3sp"
+            android:text="DNI"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/etDNI_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDNI_login"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/tvContrasena_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etDNI_login"
+            android:text="Contraseña"
+            android:layout_marginLeft="3dp"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/etContrasena_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvContrasena_login"
+            android:layout_marginBottom="18dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etContrasena_login"
+            android:backgroundTint="@color/white"
+            android:text="Iniciar sesión"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

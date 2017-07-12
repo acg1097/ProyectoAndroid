@@ -1,0 +1,106 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alexandre.proyectoandroid.vistas.mover.Paso3_1_mover_mobiliario">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/etiqueta_motivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="Seleccione el motivo de salida:"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/opciones_movimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etiqueta_motivo"
+                android:padding="10dp"
+                android:layout_marginBottom="20dp">
+
+                <RadioButton
+                    android:id="@+id/radio_prestamo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="16dp"
+                    android:checked="true"
+                    android:text="Prestamo"
+                    android:textSize="25sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_compra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Venta"
+                    android:textSize="25sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="Seleccione el área que desea el activo:"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spArea"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+
+
+            <Button
+                android:id="@+id/btn_anterior_mobiliario_4_mover"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volver"
+                android:textAllCaps="false"
+                android:textColor="@color/gray"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_continuar_mobiliario_4_mover"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Continuar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

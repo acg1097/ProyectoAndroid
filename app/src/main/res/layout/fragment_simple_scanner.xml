@@ -2,16 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alexandre.proyectoandroid.SimpleScannerFragment">
+    tools:context="com.alexandre.proyectoandroid.vistas.extras.SimpleScannerFragment">
 
     <fragment
-        android:name="com.alexandre.proyectoandroid.SimpleScannerFragment"
+        android:name="com.alexandre.proyectoandroid.vistas.extras.SimpleScannerFragment"
         android:id="@+id/scanner_fragment"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
     </fragment>
-
-
 
 </FrameLayout>
