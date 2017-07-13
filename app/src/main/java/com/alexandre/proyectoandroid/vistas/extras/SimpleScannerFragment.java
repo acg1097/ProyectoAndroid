@@ -81,7 +81,7 @@ public class SimpleScannerFragment extends Fragment implements ZXingScannerView.
             ActivoDAO dao = new ActivoDAO(getActivity());
             ActivoDTO mobiliario = dao.getActivoDTO(rawResult.getText().toString().trim());
 
-            if(mobiliario==null){
+            if(mobiliario.getMarca()==null){
                 Toast.makeText(getActivity(),"No existe ningún mobiliario con ese codigo",Toast.LENGTH_LONG).show();
             }else {
 

@@ -63,12 +63,10 @@ public class RegistrarActivo extends AppCompatActivity implements PasoPrincipal_
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
             if (tipo == 0) {
-                //P_ACTUAL = MOBILIARIO_1;
                 Paso1_registrar_mobiliario f1 = new Paso1_registrar_mobiliario();
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.fragment_contenedor_registrar, f1).commit();
             } else {
-                //P_ACTUAL = CARRO_1;
                 Paso1_registrar_vehiculo f1 = new Paso1_registrar_vehiculo();
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 transaction.replace(R.id.fragment_contenedor_registrar, f1).commit();

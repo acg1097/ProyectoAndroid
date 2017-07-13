@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alexandre.proyectoandroid.vistas.mover.Paso3_1_mover_mobiliario">
+    tools:context="com.alexandre.proyectoandroid.vistas.mover.Paso3_1_mover_carro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_marginBottom="20dp">
 
                 <RadioButton
-                    android:id="@+id/radio_prestamo"
+                    android:id="@+id/radio_prestamo_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -45,7 +45,7 @@
                     android:textSize="25sp" />
 
                 <RadioButton
-                    android:id="@+id/radio_compra"
+                    android:id="@+id/radio_compra_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -63,7 +63,7 @@
                 android:textSize="20sp" />
 
             <Spinner
-                android:id="@+id/spArea"
+                android:id="@+id/spArea_c"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 />
@@ -78,7 +78,7 @@
 
 
             <Button
-                android:id="@+id/btn_anterior_mobiliario_4_mover"
+                android:id="@+id/btn_anterior_carro_4_mover"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btn_continuar_mobiliario_4_mover"
+                android:id="@+id/btn_continuar_carro_4_mover"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,6 +101,5 @@
 
 
     </LinearLayout>
-
 
 </FrameLayout>

@@ -7,7 +7,8 @@ package com.alexandre.proyectoandroid.beans;
 public class MovimientoDTO {
 
     private int nroMovimiento;
-    private ActivoDTO activoDTO;
+    private String idActivo;
+    private String tipoActivo;
     private String tipoMovimiento;
     private String fechaMovimiento;
     private String areaMovimiento;
@@ -21,12 +22,20 @@ public class MovimientoDTO {
         this.nroMovimiento = nroMovimiento;
     }
 
-    public ActivoDTO getActivoDTO() {
-        return activoDTO;
+    public String getIdActivo() {
+        return idActivo;
     }
 
-    public void setActivoDTO(ActivoDTO activoDTO) {
-        this.activoDTO = activoDTO;
+    public void setIdActivo(String idActivo) {
+        this.idActivo = idActivo;
+    }
+
+    public String getTipoActivo() {
+        return tipoActivo;
+    }
+
+    public void setTipoActivo(String tipoActivo) {
+        this.tipoActivo = tipoActivo;
     }
 
     public String getTipoMovimiento() {

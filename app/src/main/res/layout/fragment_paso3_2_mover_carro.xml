@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alexandre.proyectoandroid.vistas.mover.Paso3_2_mover_mobiliario">
+    tools:context="com.alexandre.proyectoandroid.vistas.mover.Paso3_2_mover_carro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:padding="10dp"
-            android:text="Devolución de mobiliario:"
+            android:text="Devolución de vehiculo:"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -34,13 +34,13 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/etUbicacion_retorno"
+                android:id="@+id/etUbicacion_retorno_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:inputType="text"
+                android:backgroundTint="@color/colorPrimary"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -53,7 +53,7 @@
 
 
             <Button
-                android:id="@+id/btn_anterior_mobiliario_3_2"
+                android:id="@+id/btn_anterior_carro_3_2"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btn_siguiente_mobiliario_3_2"
+                android:id="@+id/btn_siguiente_carro_3_2"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,5 +74,4 @@
                 android:textSize="18sp" />
         </RelativeLayout>
     </LinearLayout>
-
 </FrameLayout>

@@ -56,11 +56,11 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
                 fm3.volver_anterior_mover_mobiliario_4();
                 break;
             case R.id.btn_continuar_mobiliario_4_mover:
-                int tipo = -1;
+                String tipo = null;
                 if (rd_prestamo.isChecked()) {
-                    tipo = 0;
+                    tipo = "Prestamo";
                 } else {
-                    tipo = 1;
+                    tipo = "Venta";
                 }
                 String area = spArea.getItemAtPosition(spArea.getSelectedItemPosition()).toString();
 
@@ -72,7 +72,7 @@ public class Paso3_1_mover_mobiliario extends Fragment implements View.OnClickLi
 
     public interface Fragment_mover_3 {
         void volver_anterior_mover_mobiliario_4();
-        void pasar_registrar_movimiento_mobiliario_4(int tipo,String area);
+        void pasar_registrar_movimiento_mobiliario_4(String tipo,String area);
     }
 
 }

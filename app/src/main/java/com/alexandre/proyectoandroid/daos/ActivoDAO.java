@@ -72,9 +72,9 @@ public class ActivoDAO {
             SQLiteDatabase sql = db.openDataBase();
             Cursor c;
             if (tipo == null) {
-                c = sql.query(TABLA, null, null, null, null, null, null);
+                c = sql.query(TABLA, null, null, null, null, null,null);
             } else {
-                c = sql.query(TABLA, null, COL_TIPO + "=?", new String[]{String.valueOf(tipo)}, null, null, null);
+                c = sql.query(TABLA, null, COL_TIPO + "=?", new String[]{String.valueOf(tipo)}, null, null,null);
             }
             if (c.moveToFirst()) {
                 do {
@@ -109,8 +109,6 @@ public class ActivoDAO {
         ContentValues contentValues = new ContentValues();
 
         String codigo;
-
-        Toast.makeText(mContext, a.getTipo(), Toast.LENGTH_LONG).show();
 
         if (a.getTipo().toString().trim().toLowerCase().equals("vehiculo")) {
             contentValues.put(COL_ID, a.getId());
@@ -151,6 +149,18 @@ public class ActivoDAO {
         contentValues.put(COL_MODELO, a.getModelo());
         contentValues.put(COL_VALOR, a.getValor());
         contentValues.put(COL_UBICACION, a.getUbicacion());
+
+        return new DataBaseHelper(mContext)
+                .openDataBase()
+                .update(TABLA, contentValues, COL_ID + "= ?", new String[]{String.valueOf(a.getId())});
+    }
+
+    public int actualizarEstadoActivo(ActivoDTO a) {
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_UBICACION, a.getUbicacion());
+        contentValues.put(COL_ESTADO, a.getEstado());
 
         return new DataBaseHelper(mContext)
                 .openDataBase()

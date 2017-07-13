@@ -68,7 +68,8 @@ public class Paso1_mover_mobiliario extends Fragment implements View.OnClickList
                 if (etCodebar.getText().toString().trim().length() > 0) {
                     ActivoDAO dao = new ActivoDAO(getActivity());
                     ActivoDTO mobiliario = dao.getActivoDTO(etCodebar.getText().toString().trim());
-                    if (mobiliario==null) {
+
+                    if (mobiliario.getMarca()==null) {
                         Toast.makeText(getActivity(), "No existe ningún mobiliario con ese codigo", Toast.LENGTH_LONG).show();
                     } else {
                         if (mobiliario.getEstado().toString().equals("En almacén")) {

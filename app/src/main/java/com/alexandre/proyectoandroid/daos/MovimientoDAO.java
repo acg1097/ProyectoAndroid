@@ -1,5 +1,6 @@
 package com.alexandre.proyectoandroid.daos;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.alexandre.proyectoandroid.beans.MovimientoDTO;
 import com.alexandre.proyectoandroid.DataBaseHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,28 +18,16 @@ import java.util.List;
  */
 
 public class MovimientoDAO {
-    Context myContext;
 
-
-    private final String TABLE_MOV = "tb_movimiento";
-    private final String COL_NRO_MOV = "nroMovimiento";
-    private final String COL_FECHA = "FechaMovimiento";
-    private final String COL_HORA = "horaMovimiento";
+    private final String TABLA = "tb_movimiento";
+    private final String COL_NRO = "nroMovimiento";
     private final String COL_TIPO_MOV = "tipoMovimiento";
-    private final String COL_AREA_SOL = "areaSolicitante";
+    private final String COL_TIPO_ACT = "tipoActivo";
+    private final String COL_AREASOL = "areaSolicitante";
+    private final String COL_IDACTIVO = "idActivo";
+    private final String COL_FECHA = "fechaMovimiento";
+    private final String COL_HORA = "horaMovimiento";
 
-    // ----------------------ENTRADA VEHICULO ---------------------//
-    private final String TABLE_ENT_VEH = "tb_entrada_vehiculo";
-    private final String COL_ID_VEH = "idVehiculo";
-
-    // ----------------------SALIDA VEHICULO ---------------------//
-    private final String TABLE_SAL_VEH = "tb_salida_vehiculo";
-    // ----------------------ENTRADA MOBILIARIO ---------------------//
-    private final String TABLE_ENT_MOB = "tb_entrada_mobiliario";
-
-    // ----------------------SALIDA MOBILIARIO ---------------------//
-    private final String TABLE_SAL_MOB = "tb_salida_mobiliario";
-    private final String COL_ID_MOB = "idMobiliario";
 
     private Context mContext;
 
@@ -44,165 +35,91 @@ public class MovimientoDAO {
         mContext = context;
     }
 
-   /* private MovimientoDTO cursorToMovimientoDTO(Cursor c) {
+    private MovimientoDTO cursorToMovimientoDTO(Cursor c) {
 
         MovimientoDTO m = new MovimientoDTO();
 
-        m.setNroMovimiento(c.isNull(c.getColumnIndex(COL_NRO_MOV)) ? 0 : c.getInt(c.getColumnIndex(COL_NRO_MOV)));
+        m.setNroMovimiento(c.isNull(c.getColumnIndex(COL_NRO)) ? 0 : c.getInt(c.getColumnIndex(COL_NRO)));
 
-        5.setTipoActivo(c.isNull(c.getColumnIndex(COL_TIPO_MOV)) ? "" : c.getString(c.getColumnIndex(COL_TIPO_MOV)));
+        m.setIdActivo(c.isNull(c.getColumnIndex(COL_IDACTIVO)) ? "" : c.getString(c.getColumnIndex(COL_IDACTIVO)));
+        m.setTipoActivo(c.isNull(c.getColumnIndex(COL_TIPO_ACT)) ? "" : c.getString(c.getColumnIndex(COL_TIPO_ACT)));
+
         m.setTipoMovimiento(c.isNull(c.getColumnIndex(COL_TIPO_MOV)) ? "" : c.getString(c.getColumnIndex(COL_TIPO_MOV)));
         m.setFechaMovimiento(c.isNull(c.getColumnIndex(COL_FECHA)) ? "" : c.getString(c.getColumnIndex(COL_FECHA)));
-        m.setAreaMovimiento(c.isNull(c.getColumnIndex(COL_FECHA)) ? "" : c.getString(c.getColumnIndex(COL_FECHA)));
-        m.setHoraMovimiento(c.isNull(c.getColumnIndex(COL_FECHA)) ? "" : c.getString(c.getColumnIndex(COL_FECHA)));
-
-        m.setIdObjeto(getId(m.getNroMovimiento(), m.getTipoActivo(), m.getTipoMovimiento()));
+        m.setAreaMovimiento(c.isNull(c.getColumnIndex(COL_AREASOL)) ? "" : c.getString(c.getColumnIndex(COL_AREASOL)));
+        m.setHoraMovimiento(c.isNull(c.getColumnIndex(COL_HORA)) ? "" : c.getString(c.getColumnIndex(COL_HORA)));
 
         return m;
     }
 
-    public MovimientoDTO movimientoDTOById(int id) {
-        MovimientoDTO f = null;
+
+    public List<MovimientoDTO> listaMovimientoDTOsByIdActivo() {
+        List<MovimientoDTO> lista = new ArrayList<>();
         try {
             DataBaseHelper db = new DataBaseHelper(mContext);
             SQLiteDatabase sql = db.openDataBase();
-            Cursor c = sql.query(TABLE_MOV, null, COL_NRO_MOV + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+            Cursor c = sql.query(TABLA, null, null, null, null, null,null);
 
             if (c.moveToFirst()) {
-                f = cursorToMovimientoDTO(c);
+                do {
+                    lista.add(cursorToMovimientoDTO(c));
+                }
+                while (c.moveToNext());
             }
 
-
         } catch (Exception ex) {
-
         }
-        return f;
+
+        return lista;
     }
 
-    public List<MovimientoDTO> movimientoDTOList() {
-        List<MovimientoDTO> f = new ArrayList<>();
+    public MovimientoDTO BuscarMovimientoPorActivo(String id) {
+        MovimientoDTO m = null;
         try {
             DataBaseHelper db = new DataBaseHelper(mContext);
             SQLiteDatabase sql = db.openDataBase();
-            Cursor c = sql.query(TABLE_MOV, null, null, null, null, null, null);
+            Cursor c;
 
-            while (c.moveToNext()) {
-                f.add(cursorToMovimientoDTO(c));
-            }
+            c = sql.query(TABLA, null, COL_IDACTIVO + "= ?", new String[]{String.valueOf(id)}, null, null,null,"1");
 
-
-        } catch (Exception ex) {
-
-        }
-        return f;
-    }
-
-    public List<MovimientoDTO> movimientoDTOListByDate(String fecha) {
-        List<MovimientoDTO> f = new ArrayList<>();
-        try {
-            DataBaseHelper db = new DataBaseHelper(mContext);
-            SQLiteDatabase sql = db.openDataBase();
-            Cursor c = sql.query(TABLE_MOV, null, COL_FECHA + " = ?", new String[]{String.valueOf(fecha)}, null, null, null);
-
-            while (c.moveToNext()) {
-                f.add(cursorToMovimientoDTO(c));
-            }
-
-
-        } catch (Exception ex) {
-
-        }
-        return f;
-    }
-
-    public List<MovimientoDTO> movimientoDTOListByArea(String area) {
-        List<MovimientoDTO> f = new ArrayList<>();
-        try {
-            DataBaseHelper db = new DataBaseHelper(mContext);
-            SQLiteDatabase sql = db.openDataBase();
-            Cursor c = sql.query(TABLE_MOV, null, COL_AREA_SOL + " = ?", new String[]{String.valueOf(area)}, null, null, null);
-
-            while (c.moveToNext()) {
-                f.add(cursorToMovimientoDTO(c));
-            }
-
-
-        } catch (Exception ex) {
-
-        }
-        return f;
-    }
-
-    private int getId(int mov, String tipoobj, String tipomov) {
-        int id = 0;
-
-
-        try {
-            DataBaseHelper db = new DataBaseHelper(myContext);
-            SQLiteDatabase sql = db.openDataBase();
-
-            if (tipoobj.toLowerCase() == "vehiculo") {
-
-                if (tipomov.toLowerCase() == "entrada") {
-
-                    Cursor c = sql.query(TABLE_ENT_VEH, new String[]{COL_ID_VEH}, COL_TIPO_MOV + " = ?", new String[]{String.valueOf(mov)}, null, null, null);
-                    id = cursorToId(c, tipoobj, tipomov);
-
-                }
-
-                if (tipomov.toLowerCase() == "salida") {
-                    Cursor c = sql.query(TABLE_SAL_VEH, new String[]{COL_ID_VEH}, COL_TIPO_MOV + " = ?", new String[]{String.valueOf(mov)}, null, null, null);
-                    id = cursorToId(c, tipoobj, tipomov);
-                }
-
-            }
-
-            if (tipoobj == "Mobiliario") {
-
-                if (tipomov.toLowerCase() == "entrada") {
-
-                    Cursor c = sql.query(TABLE_ENT_MOB, new String[]{COL_ID_VEH}, COL_TIPO_MOV + " = ?", new String[]{String.valueOf(mov)}, null, null, null);
-                    id = cursorToId(c, tipoobj, tipomov);
-
-                }
-
-                if (tipomov.toLowerCase() == "salida") {
-                    Cursor c = sql.query(TABLE_SAL_MOB, new String[]{COL_ID_VEH}, COL_TIPO_MOV + " = ?", new String[]{String.valueOf(mov)}, null, null, null);
-                    id = cursorToId(c, tipoobj, tipomov);
-                }
+            if (c.moveToFirst()) {
+                m = cursorToMovimientoDTO(c);
             }
 
         } catch (Exception ex) {
         }
 
-        return id;
+        return m;
     }
 
-    private int cursorToId(Cursor c, String tipoobj, String tipomov) {
-        int id;
+    public long ingresarMovimientoDTO(MovimientoDTO m) {
 
-        if (tipomov.toLowerCase() == "entrada") {
-            if (tipoobj.toLowerCase() == "mobiliario") {
-                id = c.isNull(c.getColumnIndex(COL_ID_MOB)) ? 0 : c.getInt(c.getColumnIndex(COL_ID_MOB));
+        ContentValues contentValues = new ContentValues();
 
-            } else {
-                id = c.isNull(c.getColumnIndex(COL_ID_VEH)) ? 0 : c.getInt(c.getColumnIndex(COL_ID_VEH));
-            }
+        contentValues.put(COL_TIPO_MOV, m.getTipoMovimiento());
+        contentValues.put(COL_TIPO_ACT, m.getTipoActivo());
+        contentValues.put(COL_AREASOL, m.getAreaMovimiento());
+        contentValues.put(COL_IDACTIVO, m.getIdActivo());
+        contentValues.put(COL_FECHA, getFecha());
+        contentValues.put(COL_HORA, getHora());
 
-        } else {
-            if (tipomov.toLowerCase() == "mobiliario") {
-                id = c.isNull(c.getColumnIndex(COL_ID_MOB)) ? 0 : c.getInt(c.getColumnIndex(COL_ID_MOB));
-            } else {
-                id = c.isNull(c.getColumnIndex(COL_ID_VEH)) ? 0 : c.getInt(c.getColumnIndex(COL_ID_VEH));
-            }
-        }
+        DataBaseHelper bd = new DataBaseHelper(mContext);
 
+        return bd.openDataBase().insert(TABLA, null, contentValues);
 
-        return id;
     }
 
-*/
+    String getHora() {
+        Date hora = new Date();
+        SimpleDateFormat hf = new SimpleDateFormat("HH:mm:ss");
+        return hf.format(hora);
+    }
+
+    String getFecha() {
+        Date fecha = new Date();
+        SimpleDateFormat hf = new SimpleDateFormat("dd/MM/yyyy");
+        return hf.format(fecha);
+    }
 }
-
 
 

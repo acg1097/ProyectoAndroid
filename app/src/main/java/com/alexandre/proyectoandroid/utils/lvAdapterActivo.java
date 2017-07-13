@@ -55,7 +55,7 @@ public class lvAdapterActivo extends ArrayAdapter<ActivoDTO>{
         }
 
         tvValor.setText("Valor: S/."+a.getValor());
-        tvUbicacion.setText(a.getUbicacion());
+        tvUbicacion.setText("Ubicación: "+a.getUbicacion());
         tvEstado.setText(a.getEstado());
 
         return convertView;

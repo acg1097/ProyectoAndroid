@@ -15,14 +15,14 @@ import com.alexandre.proyectoandroid.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Paso3_2_mover_mobiliario extends Fragment {
+public class Paso3_2_mover_carro extends Fragment {
 
     private Button btn_continuar_mobiliario_3_2;
     private Button btn_anterior_mobiliario_3_2;
-    private Fragment_mover_3_2 fm2;
+    private Fragment_mover_3_2_c fm3_2;
     private EditText etUbicacion;
 
-    public Paso3_2_mover_mobiliario() {
+    public Paso3_2_mover_carro() {
         // Required empty public constructor
     }
 
@@ -30,35 +30,35 @@ public class Paso3_2_mover_mobiliario extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fm2 = (Fragment_mover_3_2) getActivity();
-        View view = inflater.inflate(R.layout.fragment_paso3_2_mover_mobiliario, container, false);
-        etUbicacion = (EditText) view.findViewById(R.id.etUbicacion_retorno);
-        btn_anterior_mobiliario_3_2 = (Button) view.findViewById(R.id.btn_anterior_mobiliario_3_2);
+        fm3_2 = (Fragment_mover_3_2_c) getActivity();
+        View view = inflater.inflate(R.layout.fragment_paso3_2_mover_carro, container, false);
+        etUbicacion = (EditText) view.findViewById(R.id.etUbicacion_retorno_c);
+        btn_anterior_mobiliario_3_2 = (Button) view.findViewById(R.id.btn_anterior_carro_3_2);
         btn_anterior_mobiliario_3_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fm2.volver_anterior_mover_mobiliario_3_2();
+                fm3_2.volver_anterior_mover_carro_3_2();
             }
         });
 
-        btn_continuar_mobiliario_3_2 = (Button) view.findViewById(R.id.btn_siguiente_mobiliario_3_2);
+        btn_continuar_mobiliario_3_2 = (Button) view.findViewById(R.id.btn_siguiente_carro_3_2);
         btn_continuar_mobiliario_3_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(etUbicacion.getText().toString().isEmpty()){
                     Toast.makeText(getActivity(),"Ingrese una ubicación",Toast.LENGTH_LONG).show();
                 }else{
-                    fm2.pasar_siguiente_mover_mobiliario_3_2(etUbicacion.getText().toString());
+                    fm3_2.pasar_siguiente_mover_carro_3_2(etUbicacion.getText().toString());
                 }
             }
         });
         return view;
     }
 
-    public interface Fragment_mover_3_2
+    public interface Fragment_mover_3_2_c
     {
-        void volver_anterior_mover_mobiliario_3_2();
-        void pasar_siguiente_mover_mobiliario_3_2(String ubicacion);
+        void volver_anterior_mover_carro_3_2();
+        void pasar_siguiente_mover_carro_3_2(String ubicacion);
     }
 
 }

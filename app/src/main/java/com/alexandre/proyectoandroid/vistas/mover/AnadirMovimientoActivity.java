@@ -1,5 +1,6 @@
 package com.alexandre.proyectoandroid.vistas.mover;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,23 +10,15 @@ import android.widget.Toast;
 
 import com.alexandre.proyectoandroid.R;
 import com.alexandre.proyectoandroid.beans.ActivoDTO;
+import com.alexandre.proyectoandroid.beans.MovimientoDTO;
 import com.alexandre.proyectoandroid.daos.ActivoDAO;
 import com.alexandre.proyectoandroid.daos.MovimientoDAO;
 import com.alexandre.proyectoandroid.vistas.extras.SimpleScannerFragment_mover;
 
-public class AnadirMovimientoActivity extends AppCompatActivity implements SimpleScannerFragment_mover.EnviarData2, PasoPrincipal_mover_fragment.Fragment_principal, Paso1_mover_mobiliario.Fragment_mover_1, Paso2_mover_mobiliario.Fragment_mover_2,Paso3_1_mover_mobiliario.Fragment_mover_3{
+public class AnadirMovimientoActivity extends AppCompatActivity implements SimpleScannerFragment_mover.EnviarData2, PasoPrincipal_mover_fragment.Fragment_principal, Paso1_mover_mobiliario.Fragment_mover_1, Paso2_mover_mobiliario.Fragment_mover_2, Paso3_1_mover_mobiliario.Fragment_mover_3, Paso3_2_mover_mobiliario.Fragment_mover_3_2 ,Paso1_mover_carro.Fragment_mover_1_v,Paso2_mover_carro.Fragment_mover_2_v,Paso3_1_mover_carro.Fragment_mover_3_c,Paso3_2_mover_carro.Fragment_mover_3_2_c{
 
     private Toolbar toolbar;
-    static final int P_PRINCIPAL = 0,
-            MOBILIARIO_1 = 1,
-            MOBILIARIO_2 = 2,
-            MOBILIARIO_3_1 = 3,
-            MOBILIARIO_3_2 = 4,
-            CARRO_1 = 6,
-            CARRO_2 = 7;
-
     static String tipo = "";
-
     static int P_ACTUAL = 0;
     public static String CODEBAR = "";
     public static String NROPLACA = "";
@@ -58,23 +51,14 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     }
 
     @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
     public void pasar_siguiente_1(int tipo) {
-        Toast.makeText(AnadirMovimientoActivity.this, tipo + "", Toast.LENGTH_SHORT).show();
-
         android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentomanager.beginTransaction();
         if (tipo == 0) {
-            P_ACTUAL = MOBILIARIO_1;
             Paso1_mover_mobiliario f1 = new Paso1_mover_mobiliario();
             transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
             transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
         } else {
-            P_ACTUAL = CARRO_1;
             Paso1_mover_carro f1 = new Paso1_mover_carro();
             transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
             transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
@@ -83,9 +67,8 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
 
     //MOBILIARIOS
     @Override
-    public void pasar_siguiente_mover_mobiliario_2(String codigo,String tipo) {
+    public void pasar_siguiente_mover_mobiliario_2(String codigo, String tipo) {
         try {
-            P_ACTUAL = MOBILIARIO_2;
             CODEBAR = codigo;
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
@@ -99,7 +82,6 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     @Override
     public void volver_anterior_mover_mobiliario_2() {
         try {
-            P_ACTUAL = P_PRINCIPAL;
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
@@ -113,8 +95,6 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     public void enviarCodigo(String codigo, String tipo) {
 
         if (tipo.equals("salida")) {
-
-            P_ACTUAL = MOBILIARIO_2;
             CODEBAR = codigo;
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
@@ -123,8 +103,6 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
             transaction.replace(R.id.fragment_contenedor_mover, f2).commit();
 
         } else {
-
-            P_ACTUAL = MOBILIARIO_2;
             CODEBAR = codigo;
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
@@ -140,7 +118,6 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
     @Override
     public void volver_anterior_mover_mobiliario_3() {
         try {
-            P_ACTUAL = MOBILIARIO_2;
             android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentomanager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
@@ -157,15 +134,13 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
         if (a.getEstado().toString().toLowerCase().trim().equals("vendido")) {
             Toast.makeText(AnadirMovimientoActivity.this, "El activo ha sido vendido", Toast.LENGTH_LONG).show();
         } else {
-            if(a.getEstado().toString().toLowerCase().trim().equals("en almacén")){
-                P_ACTUAL = MOBILIARIO_3_1;
+            if (a.getEstado().toString().toLowerCase().trim().equals("en almacén")) {
                 android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentomanager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
                 Paso3_1_mover_mobiliario f1 = new Paso3_1_mover_mobiliario();
                 transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
-            }else{
-                P_ACTUAL = MOBILIARIO_3_2;
+            } else {
                 android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentomanager.beginTransaction();
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -179,15 +154,226 @@ public class AnadirMovimientoActivity extends AppCompatActivity implements Simpl
 
     @Override
     public void volver_anterior_mover_mobiliario_4() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        Paso1_mover_mobiliario f1 = new Paso1_mover_mobiliario();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void pasar_registrar_movimiento_mobiliario_4(String tipo, String area) {
+        MovimientoDTO m = new MovimientoDTO();
+        MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
+
+        ActivoDAO a = new ActivoDAO(AnadirMovimientoActivity.this);
+
+        m.setIdActivo(CODEBAR);
+        m.setTipoActivo("Mobiliario");
+        m.setTipoMovimiento(tipo);
+        m.setAreaMovimiento(area);
+
+        long ok = dao.ingresarMovimientoDTO(m);
+
+        if (ok > 0) {
+            ActivoDTO adto = new ActivoDTO();
+            if (tipo.equals("Prestamo")) {
+                adto.setEstado("Prestado");
+            } else {
+                adto.setEstado("Vendido");
+            }
+            adto.setId(m.getIdActivo());
+            adto.setUbicacion(area);
+            int ok2 = a.actualizarEstadoActivo(adto);
+            if (ok2 > 0) {
+                Toast.makeText(AnadirMovimientoActivity.this, "Movimiento registrado correctamente", Toast.LENGTH_LONG).show();
+                setResult(RESULT_OK);
+            }
+        } else {
+            Toast.makeText(AnadirMovimientoActivity.this, "No se pudo registrar el movimiento", Toast.LENGTH_LONG).show();
+            setResult(RESULT_CANCELED);
+        }
+        finish();
+    }
+
+    @Override
+    public void volver_anterior_mover_mobiliario_3_2() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        Paso1_mover_mobiliario f1 = new Paso1_mover_mobiliario();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void pasar_siguiente_mover_mobiliario_3_2(String ubicacion) {
+        MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
+        MovimientoDTO m = dao.BuscarMovimientoPorActivo(CODEBAR);
+
+
+        m.setTipoActivo(m.getTipoActivo());
+        m.setIdActivo(m.getIdActivo());
+        m.setTipoMovimiento("Devolución");
+        m.setAreaMovimiento(m.getAreaMovimiento());
+
+        long okm = dao.ingresarMovimientoDTO(m);
+
+        if (okm > 0) {
+
+            ActivoDAO dao2 = new ActivoDAO(AnadirMovimientoActivity.this);
+
+            ActivoDTO a = new ActivoDTO();
+            a.setId(m.getIdActivo());
+            a.setEstado("En almacén");
+            a.setUbicacion(ubicacion);
+
+            int ok = dao2.actualizarEstadoActivo(a);
+
+            if (ok > 0) {
+                Toast.makeText(AnadirMovimientoActivity.this, "Movimiento registrado correctamente", Toast.LENGTH_LONG).show();
+                setResult(RESULT_OK);
+            } else {
+                Toast.makeText(AnadirMovimientoActivity.this, "No se pudo registrar el movimiento", Toast.LENGTH_LONG).show();
+                setResult(RESULT_CANCELED);
+            }
+            finish();
+        }
+
 
     }
 
     @Override
-    public void pasar_registrar_movimiento_mobiliario_4(int tipo,String area) {
+    public void pasar_siguiente_mover_carro_2(String codigo) {
+        NROPLACA = codigo;
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        Paso2_mover_carro f1 = new Paso2_mover_carro();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
 
-        /*MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
-        dao.registrarMovimiento(m);*/
-        Toast.makeText(AnadirMovimientoActivity.this,"Movimiento registrado correctamente",Toast.LENGTH_LONG).show();
+    @Override
+    public void volver_anterior_mover_carro_2() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        PasoPrincipal_mover_fragment f1 = new PasoPrincipal_mover_fragment();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void pasar_siguiente_mover_carro_3() {
+        ActivoDAO dao = new ActivoDAO(AnadirMovimientoActivity.this);
+        ActivoDTO a = dao.getActivoDTO(NROPLACA);
+        if(a.getEstado().equals("En almacén")){
+            android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentomanager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+            Paso3_1_mover_carro f1 = new Paso3_1_mover_carro();
+            transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+        }else{
+            android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentomanager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+            Paso3_2_mover_carro f2 = new Paso3_2_mover_carro();
+            transaction.replace(R.id.fragment_contenedor_mover, f2).commit();
+        }
+    }
+
+    @Override
+    public void volver_anterior_mover_carro_3() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        Paso1_mover_carro f1 = new Paso1_mover_carro();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void volver_anterior_mover_carro_4() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        Paso1_mover_carro f1 = new Paso1_mover_carro();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void pasar_registrar_movimiento_carro_4(String tipo, String area) {
+        MovimientoDTO m = new MovimientoDTO();
+        MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
+
+        ActivoDAO a = new ActivoDAO(AnadirMovimientoActivity.this);
+
+        m.setIdActivo(NROPLACA);
+        m.setTipoActivo("Vehiculo");
+        m.setTipoMovimiento(tipo);
+        m.setAreaMovimiento(area);
+
+        long ok = dao.ingresarMovimientoDTO(m);
+
+        if (ok > 0) {
+            ActivoDTO adto = new ActivoDTO();
+            if (tipo.equals("Prestamo")) {
+                adto.setEstado("Prestado");
+            } else {
+                adto.setEstado("Vendido");
+            }
+            adto.setId(m.getIdActivo());
+            adto.setUbicacion(area);
+            int ok2 = a.actualizarEstadoActivo(adto);
+            if (ok2 > 0) {
+                Toast.makeText(AnadirMovimientoActivity.this, "Movimiento registrado correctamente", Toast.LENGTH_LONG).show();
+                setResult(RESULT_OK);
+            }
+        } else {
+            Toast.makeText(AnadirMovimientoActivity.this, "No se pudo registrar el movimiento", Toast.LENGTH_LONG).show();
+            setResult(RESULT_CANCELED);
+        }
         finish();
+    }
+
+    @Override
+    public void volver_anterior_mover_carro_3_2() {
+        android.support.v4.app.FragmentManager fragmentomanager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentomanager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+        Paso1_mover_carro f1 = new Paso1_mover_carro();
+        transaction.replace(R.id.fragment_contenedor_mover, f1).commit();
+    }
+
+    @Override
+    public void pasar_siguiente_mover_carro_3_2(String ubicacion) {
+        MovimientoDAO dao = new MovimientoDAO(AnadirMovimientoActivity.this);
+        MovimientoDTO m = dao.BuscarMovimientoPorActivo(NROPLACA);
+
+
+        m.setTipoActivo(m.getTipoActivo());
+        m.setIdActivo(m.getIdActivo());
+        m.setTipoMovimiento("Devolución");
+        m.setAreaMovimiento(m.getAreaMovimiento());
+
+        long okm = dao.ingresarMovimientoDTO(m);
+
+        if (okm > 0) {
+
+            ActivoDAO dao2 = new ActivoDAO(AnadirMovimientoActivity.this);
+
+            ActivoDTO a = new ActivoDTO();
+            a.setId(m.getIdActivo());
+            a.setEstado("En almacén");
+            a.setUbicacion(ubicacion);
+
+            int ok = dao2.actualizarEstadoActivo(a);
+
+            if (ok > 0) {
+                Toast.makeText(AnadirMovimientoActivity.this, "Movimiento registrado correctamente", Toast.LENGTH_LONG).show();
+                setResult(RESULT_OK);
+            } else {
+                Toast.makeText(AnadirMovimientoActivity.this, "No se pudo registrar el movimiento", Toast.LENGTH_LONG).show();
+                setResult(RESULT_CANCELED);
+            }
+            finish();
+        }
     }
 }

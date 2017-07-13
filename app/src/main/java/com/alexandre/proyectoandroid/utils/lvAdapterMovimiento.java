@@ -9,7 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.alexandre.proyectoandroid.R;
+import com.alexandre.proyectoandroid.beans.ActivoDTO;
 import com.alexandre.proyectoandroid.beans.MovimientoDTO;
+import com.alexandre.proyectoandroid.daos.ActivoDAO;
 
 import java.util.ArrayList;
 
@@ -39,25 +41,15 @@ public class lvAdapterMovimiento extends ArrayAdapter<MovimientoDTO> {
 
         MovimientoDTO m = getItem(position);
 
-        /*MobiliarioDAO mobiliarioDAO = new MobiliarioDAO(getContext());
-        VehiculoDAO vehiculoDAO = new VehiculoDAO(getContext());
-/*
-        ActivoDTO a = mobiliarioDAO.getMobiliarioDTOById(m.getActivoDTO().getCodigo());
+        ActivoDAO dao = new ActivoDAO(getContext());
+        ActivoDTO a = dao.getActivoDTO(m.getIdActivo());
 
-        if(a.getTipo().equals("vehiculo")){
-            VehiculoDTO v = vehiculoDAO.getVehiculoDTOById(m.getActivoDTO().getCodigo());
-            tvActivo.setText(v.getMarca()+", "+v.getModelo());
+        if(m.getTipoActivo().toLowerCase().equals("vehiculo")){
+            tvActivo.setText(a.getMarca()+", "+a.getModelo());
         }else{
+            tvActivo.setText(a.getDescripcion());
+        }
 
-        }
-/*
-        if (m.getTipoActivo().toLowerCase().equals("vehiculo")) {
-            vehiculoDTO = vehiculoDAO.getVehiculoDTOById(m.getIdObjeto());
-            tvActivo.setText(vehiculoDTO.getMarcaVehiculo()+", "+vehiculoDTO.getModeloVehiculo());
-        } else {
-            tvActivo.setText(mobiliarioDTO.getDescripcionMobilario());
-        }
-*/
         tvArea.setText(m.getAreaMovimiento());
         tvFecha.setText(m.getFechaMovimiento());
         tvHora.setText(m.getHoraMovimiento());
