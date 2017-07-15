@@ -233,24 +233,18 @@ public class RegistrarActivo extends AppCompatActivity implements PasoPrincipal_
         }
 
         File uri = new File(path);
-        sendEmail(Uri.fromFile(uri));
+        sendEmail(Uri.fromFile(uri),activo);
 
     }
 
-    private void sendEmail(Uri URI) {
+    private void sendEmail(Uri URI,ActivoDTO a) {
         try {
 
-            String email = "acg1097@hotmail.com";//correo de italo
-
-            String subject = "Etiqueta equipo";
-
-            String message = "Mediante este mensaje le adjunto el equipo.";
+            String subject = "Etiqueta mobiliario - "+a.getId();
 
             final Intent i = new Intent(android.content.Intent.ACTION_SEND);
             i.setType("application/pdf");
-            i.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { email });
             i.putExtra(android.content.Intent.EXTRA_SUBJECT,subject);
-
             if (URI != null) {
                 i.putExtra(Intent.EXTRA_STREAM, URI);
             }
