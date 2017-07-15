@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.alexandre.proyectoandroid.R;
@@ -55,6 +56,16 @@ public class RegistrarActivo extends AppCompatActivity implements PasoPrincipal_
         PasoPrincipal_registrar_Fragment f1 = new PasoPrincipal_registrar_Fragment();
         transaction.replace(R.id.fragment_contenedor_registrar, f1).commit();
 
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            default:
+                finish();
+        }
+        return false;
     }
 
     @Override
